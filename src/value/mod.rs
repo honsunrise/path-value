@@ -463,14 +463,14 @@ impl Value {
         &mut self,
         path: P,
         input_value: IntoValue,
-    ) -> Result<Value, IntoErr>
+    ) -> Result<Value, Error>
     where
         P: TryInto<Path, Error = IntoErr>,
         IntoValue: Into<Value>,
         IntoErr: Into<Error>,
     {
         let input_value = input_value.into();
-        let path = path.try_into()?;
+        let path = path.try_into().map_err(|err| err.into())?;
         unsafe {
             let mut parent = self as *mut Value;
             let mut target = self as *mut Value;
@@ -518,13 +518,13 @@ impl Value {
         }
     }
 
-    pub fn get<T, P, IntoErr>(&self, path: P) -> Result<Option<T>, IntoErr>
+    pub fn get<T, P, IntoErr>(&self, path: P) -> Result<Option<T>, Error>
     where
         T: std::convert::TryFrom<Value, Error = IntoErr>,
         P: TryInto<Path, Error = IntoErr>,
         IntoErr: Into<Error>,
     {
-        let path = path.try_into()?;
+        let path = path.try_into().map_err(|err| err.into())?;
         let value = path
             .iter()
             .scan(self, |value, child_path| {
@@ -555,7 +555,9 @@ impl Value {
             .last();
         match value {
             None => Ok(None),
-            Some(value) => Ok(Some(Value::try_into(value.clone())?)),
+            Some(value) => Ok(Some(
+                Value::try_into(value.clone()).map_err(|err: IntoErr| err.into())?,
+            )),
         }
     }
 
