@@ -1,0 +1,13 @@
+ident_char = @{ !"/" ~ ASCII_ALPHANUMERIC | "-" | "_" }
+
+path_ident = { ident_char+ }
+
+index = { ASCII_DIGIT+ }
+
+path_index_ident = { ident_char+ ~ "[" ~ index ~ "]" }
+
+sub_path = ${ path_index_ident | path_ident }
+
+sub_paths = @{ (("/" ~ sub_path) | "/")+ }
+
+path = _{ SOI ~ sub_paths ~ EOI }
