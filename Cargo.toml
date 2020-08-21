@@ -1,6 +1,6 @@
 [package]
 name = "path-value"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Hosun Zhu <hosun@linux.com>"]
 edition = "2018"
 description = "Universal type and access property(s) by path"

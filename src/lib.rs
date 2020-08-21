@@ -7,6 +7,7 @@ extern crate pest_derive;
 #[macro_use]
 extern crate serde;
 
+pub use error::Error;
 pub use value::to_value;
 pub use value::Value;
 
