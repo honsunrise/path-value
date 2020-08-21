@@ -21,10 +21,8 @@ impl ValueSerializer {
             Some((key, Some(index))) => format!("{}[{}]", key, index),
             Some((key, None)) => key.to_string(),
             None => {
-                return Err(Error::serde(format!(
-                    "key is not found for value {}",
-                    value
-                )));
+                self.output = value.into();
+                return Ok(());
             }
         };
         let path: path::Path = key.parse()?;
