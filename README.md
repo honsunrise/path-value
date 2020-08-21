@@ -5,7 +5,7 @@
 [![Crate Status](https://img.shields.io/crates/v/path-value.svg)](https://crates.io/crates/path-value)
 [![Docs Status](https://docs.rs/path-value/badge.svg)](https://docs.rs/crate/path-value/)
 
-`path-value` is a [Rust](https://www.rust-lang.org) universal type library used to access property(s) in `Value` by path.
+`path-value` is a [Rust](https://www.rust-lang.org) **universal type** library used to access property(s) in `Value` by **path**.
 
 ### Quick start
 
@@ -35,6 +35,18 @@ fn main() {
     println!("{}", value_origin.get::<i32, _, _>("/test/i32").unwrap().unwrap());
 }
 ```
+
+### Path grammar
+
+```
+/<path>/<path>[index]
+```
+
+![Path Grammar](assets/path-grammar-by-reg.png)
+
+#### \<path\>\[index\]
+
+represents access to an array of elements
 
 ### [Documentation](https://docs.rs/path-value)
 
