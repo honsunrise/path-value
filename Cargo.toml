@@ -1,11 +1,11 @@
 [package]
 name = "path-value"
-version = "0.1.4"
-authors = ["Hosun Zhu <hosun@linux.com>"]
+version = "0.1.5"
+authors = ["Honsun Zhu <honsun@linux.com>"]
 edition = "2018"
 description = "Universal type and access property(s) by path"
 license-file = 'LICENSE'
-repository = "https://github.com/hosunrise/path-value"
+repository = "https://github.com/honsunrise/path-value"
 documentation = "https://docs.rs/path-value"
 keywords = ["value", "pest", "universal", "type"]
 categories = ["data-structures"]
@@ -15,5 +15,5 @@ readme = "README.md"
 serde = "1.0"
 pest = "2.1"
 pest_derive = "2.1"
-num-bigint = "0.2"
+num-bigint = "0.4"
 num-traits = "0.2"
